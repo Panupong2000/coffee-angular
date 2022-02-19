@@ -1,0 +1,91 @@
+
+<header>
+  <h1>Coffee</h1>
+  <link rel="stylesheet" href="./coffee.component.css">
+</header>
+
+<div id="form">
+
+<div class="fish" id="fish"></div>
+<div class="fish" id="fish2"></div>
+
+<form [formGroup]="form">
+  <div>
+    <h3 *ngIf="!confirm">Your name </h3>
+    <h3 *ngIf="confirm">{{coffee.name}}  </h3>
+  </div>
+  <div>
+    <h3>Name :
+      <span style="color: red;" *ngIf="form.get('name')?.errors?.['required']">*required</span></h3>
+     <input [ngModel] = "coffee.name" formControlName="name">
+  </div>
+
+  <div>
+    <h3 >Phone :
+     <span style="color: red;" *ngIf="form.get('phoneNo')?.errors?.['required']">*required</span>
+        <span style="color: red;" *ngIf="form.get('phoneNo')?.errors?.['minlength']">*invalid</span></h3>
+    <input [ngModel] = "coffee.phoneNo" formControlName="phoneNo">
+  </div>
+
+  <div>
+    <h3>E-mail :
+      <span style="color: red;" *ngIf="form.get('email')?.errors?.['required']">*required</span>
+      <span style="color: red;" *ngIf="form.get('email')?.errors?.['email']">*invalid</span></h3>
+     <input [ngModel] = "coffee.email" formControlName="email">
+  </div>
+
+  <div>
+    <h3>What would you like to drink :
+      <span style="color: red;" *ngIf="form.get('name')?.errors?.['required']">*required</span></h3>
+    <select [ngModel] = "coffee.drink" formControlName="drink">
+      <option value="Americano">Americano</option>
+      <option value="Espresso">Espresso</option>
+      <option value="Capuccino">Capuccino</option>
+      <option value="Latte">Latte</option>
+      <option value="Tea">Tea</option>
+      <option value="Milk">Milk</option>
+    </select>
+
+  </div>
+
+  <div >
+    <h3>Hot or Cold ?
+      <span style="color: red;" *ngIf="form.get('tempPreference')?.errors?.['required']">*required</span></h3>
+      <div style="display: flex;">
+      <div style="padding: 5px;">
+        <h3><input [ngModel] = "coffee.tempPreferenve" style="width: 10px; display: flex;" type="radio" name="drone" value="hot" formControlName="tempPreference"
+               checked>
+        Hot</h3>
+      </div>
+
+      <div style="padding: 5px;">
+      <h3>
+        <input style="width: 10px; display: block;"  [ngModel] = "coffee.tempPreferenve" type="radio"name="drone" value="cold" formControlName="tempPreference">
+        Cold</h3>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: inline-flex;">
+    <input [ngModel] = "coffee.sendText" style="width: 10px; display: inline-block; margin-top: 13px; margin-right: 10px;" value=true type="checkbox" formControlName="sendText"><h3>Send me text message when my order is ready.</h3>
+  </div>
+
+  <div>
+    <input type="submit" value="submit" (click) = "myClickFunction()" (click)="changeDefaultName('name')" />
+  </div>
+
+
+</form>
+
+<div *ngIf="confirm" style="text-align: center;">
+<h3>
+  Order
+</h3>
+{{form.value | json}}
+<h3 style="color: #ff0000">
+  Date Submitted : {{ myDate | date: "dd/MM/yyyy เวลา HH:mm น." }}
+</h3>
+
+</div>
+
+</div>
