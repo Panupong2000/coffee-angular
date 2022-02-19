@@ -17,7 +17,7 @@
   <div>
     <h3>Name :
       <span style="color: red;" *ngIf="form.get('name')?.errors?.['required']">*required</span></h3>
-     <input [ngModel] = "coffee.name" formControlName="name">
+     <input [(ngModel)] = "coffee.name" formControlName="name">
   </div>
 
   <div>
@@ -71,7 +71,7 @@
   </div>
 
   <div>
-    <input type="submit" value="submit" (click) = "myClickFunction()" (click)="changeDefaultName('name')" />
+    <input type="submit" value="submit" (click) = "myClickFunction()" />
   </div>
 
 
